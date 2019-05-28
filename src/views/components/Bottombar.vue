@@ -1,11 +1,11 @@
 <template>
-  <div class="bottom-bar">
+  <div class="bottom-bar border-top">
     <ul>
-      <li v-for="(item, index) of bottomItem" :key="index">
-        <router-link :to="item.url">
+      <router-link :to="item.url" v-for="(item, index) of bottomItem" :key="index">
+        <li>
           {{item.name}}
-        </router-link>
-      </li>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -17,9 +17,9 @@ export default {
       bottomItem: [
         { name: '摘要', url: '/' },
         { name: '技能', url: '/skill' },
-        { name: '工作经历', url: '/' },
-        { name: '学历项目', url: '/' },
-        { name: '小功能', url: '/' }
+        { name: '工作经历', url: '/xxx' },
+        { name: '学历项目', url: '/xxx' },
+        { name: '小功能', url: '/xxx' }
       ]
     }
   }
@@ -28,6 +28,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles.styl'
+  .border-top
+    &:before
+      border-color $borderColor
   .bottom-bar
     background $headerBgColor
     position absolute
@@ -37,9 +40,15 @@ export default {
     height: $bottomHeight
     ul
       display flex
-      li
+      a
+        display block
         flex 1
-        color $textColor
+        color: #8d94a5
         text-align center
         line-height 60px
+        li
+          &:last-child
+            border none
+      .router-link-exact-active
+        color #deaf27
 </style>

@@ -1,7 +1,8 @@
 <template>
   <header>
-    <div class="logo">logo</div>
-    <div></div>
+    <div class="logo"></div>
+    <div class="title"><strong>XU</strong>ZEYUN</div>
+    
   </header>
 </template>
 
@@ -16,4 +17,13 @@ export default {
   header
     background $headerBgColor
     height: $headerHeight
+    .title
+      text-align center
+      color #068cfb
+      line-height $headerHeight
+      font-style italic
+      strong
+        color #fdc228
+        margin-right 10px
+        font-style italic
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" ref="wrapper">
     <div class="wrapper">
       <div class="welcome">
         <div class="banner">
@@ -12,16 +12,22 @@
           <p>一次偶然的机会，我喜欢上了PS，喜欢用PS做一些小设计，比如亲自设计自己的QQ头像。当时做了很多，尝试了很多设计，刚设计完自己会觉得很好看，看几天就觉得好差。</p>
           <p>后来兴趣衍生到了网页制作，喜欢照猫画虎的设计一个网页，然后实现它。有时候索性直接实现网页，让后给它设计自己喜欢的配色。</p>
           <p>2013年临近毕业，我在老家找了一份工作开始实习，工作内容涵盖平面设计、网页设计、网页制作。看似工作内容丰富，其实每一样都做不好，也没有人带，每天都很迷茫。自己做了好几个月的页面，最终也没有能看到它上线。或许是出于兴趣，也或许是出于无奈，最终决定到北京找工作。</p>
+          <p>2010年开始进入大学，信息管理工程系、计算机网络技术专业。</p>
+          <p>一次偶然的机会，我喜欢上了PS，喜欢用PS做一些小设计，比如亲自设计自己的QQ头像。当时做了很多，尝试了很多设计，刚设计完自己会觉得很好看，看几天就觉得好差。</p>
+          <p>后来兴趣衍生到了网页制作，喜欢照猫画虎的设计一个网页，然后实现它。有时候索性直接实现网页，让后给它设计自己喜欢的配色。</p>
+          <p>2013年临近毕业，我在老家找了一份工作开始实习，工作内容涵盖平面设计、网页设计、网页制作。看似工作内容丰富，其实每一样都做不好，也没有人带，每天都很迷茫。自己做了好几个月的页面，最终也没有能看到它上线。或许是出于兴趣，也或许是出于无奈，最终决定到北京找工作。</p>
         </article>
       </div>
     </div>
   </div>
 </template>
+
 <script>
+import BScroll from 'better-scroll'
 export default {
-  name: 'HomeWelcome',
-  props: {
-    bottomItem: Array
+  name: 'ContentWelcome',
+  mounted () {
+    this.scroll = new BScroll(this.$refs.wrapper)
   }
 }
 </script>
@@ -30,6 +36,7 @@ export default {
   @import '~@/assets/styles/varibles.styl'
   .content
     position absolute
+    overflow hidden
     left 0
     right 0
     top $headerHeight
