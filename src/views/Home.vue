@@ -1,21 +1,19 @@
 <template>
   <div>
-    <home-header></home-header>
-    <transition name="slide-fade">
-      <router-view></router-view>
-    </transition>
-    <home-bottombar></home-bottombar>
+    <Header></Header>
+    <Content></Content>
   </div>
 </template>
 
 <script>
-import HomeHeader from './components/Header'
-import HomeBottombar from './components/Bottombar'
+import Header from '../components/Header/Header'
+import Content from '../views/content/Content'
+// import VideoList from '../videoView/VideoList'
 export default {
   name: 'Home',
   components: {
-    HomeHeader,
-    HomeBottombar
+    Header,
+    Content
   }
 }
 </script>

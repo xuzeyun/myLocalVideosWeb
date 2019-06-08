@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import ContentWelcome from './views/components/content/Welcome.vue'
-import ContentSkill from './views/components/content/Skill.vue'
+import AddVideo from './views/dataList/AddVideo'
 
 Vue.use(Router)
 
@@ -15,25 +14,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      redirect: '/home',
-      children: [
-        {
-          path: '/',
-          name: 'home',
-          component: ContentWelcome
-        },
-        {
-          path: '/skill',
-          name: 'skill',
-          component: ContentSkill
-        }
-      ]
-    },
-    {
-      path: '*',
-      name: 'home',
       component: Home
+    },
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: Home
+    // },
+    {
+      path: '/datatable',
+      name: 'addVideo',
+      component: AddVideo
     }
     // {
     //   path: '/about',
