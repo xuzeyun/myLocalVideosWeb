@@ -1,7 +1,7 @@
 <template>
   <el-main>
     <el-table
-      :data="asiaList"
+      :data="videoList.slice((currentPage-1)*pageSize, currentPage*pageSize)"
       style="width: 100%">
       <el-table-column
         prop="name"
@@ -48,25 +48,34 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <el-pagination
-      layout="prev, pager, next"
-      :page-size="this.pageSize"
-      :total="this.total"
-      :current-page="this.cur"
-    >
-    </el-pagination>
+    <el-row align="center">
+      <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :page-size="pageSize" 
+        :page-sizes="pageSizes"
+        :current-page="currentPage"
+        :total="total"
+        layout="prev, pager, next"
+      >
+      </el-pagination>
+    </el-row>
+    
   </el-main>
 </template>
 
 <script>
+import asiaYesStr from '../../../data/getAsiaYes'
+import { getArray } from '../../service/getDate'
 export default {
   name: 'VideoTable',
   props: {
-    asiaList: Array,
-    total: Number,    // 总页数
-    cur: Number,      // 当前页
-    pageSize: Number,  // 每页数量
-    pages: Number
+    videoList: Array,
+    pageSize: Number,
+    pageSizes: Array,
+    currentPage: Number,
+    total: Number   
   },
   data () {
     return {
@@ -75,7 +84,17 @@ export default {
     }
   },
   methods: {
-    // 删除标签
+     // 分页
+    handleSizeChange (val) {
+      this.PageSize = val
+      this.currentPage = 1
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+    },
+
+    // tag 增加删除
+    // 删除 tag
     handleClose(tag) {
       this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
     },
@@ -86,7 +105,6 @@ export default {
         this.$refs.saveTagInput.$refs.input.focus();
       });
     },
-
     handleInputConfirm() {
       let inputValue = this.inputValue;
       if (inputValue) {
@@ -109,4 +127,6 @@ export default {
       margin 4px 0 4px 8px
     .el-button
       margin 4px 0 4px 8px
+    .el-pagination
+      margin-top 10px
 </style>

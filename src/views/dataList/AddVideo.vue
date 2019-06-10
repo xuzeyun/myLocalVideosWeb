@@ -12,18 +12,18 @@
             <i class="el-icon-location"></i>
             <span>导航一</span>
           </template>
-          <el-menu-item index="1-1">亚洲港台电影</el-menu-item>
-          <el-menu-item index="1-2">亚洲大陆电影</el-menu-item>
-          <el-menu-item index="1-3">北美大片</el-menu-item>
+          <el-menu-item index="1-1" @click="strToJson(1)">亚洲港台电影</el-menu-item>
+          <el-menu-item index="1-2" @click="strToJson(2)">亚洲大陆电影</el-menu-item>
+          <el-menu-item index="1-3" @click="strToJson(3)">北美大片</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>
     <VideoTable 
-      :asiaList="asiaList"
+      :videoList="videoList"
       :pageSize="pageSize"
+      :pageSizes="pageSizes"
+      :currentPage="currentPage"
       :total="total"
-      :cur="cur"
-      :pages="pages"
     >
     </VideoTable>
   </el-container>
@@ -32,6 +32,8 @@
 <script>
 import VideoTable from "./VideoTable"
 import asiaYesStr from '../../../data/getAsiaYes'
+import asiaNoStr from '../../../data/getAsiaNo'
+import usaStr from '../../../data/getUsa'
 import { getArray } from '../../service/getDate'
 export default {
   name: 'AddVideo',
@@ -40,24 +42,28 @@ export default {
   },
   data () {
     return {
-      asiaList: [],
-      // 每页数量 总条数 当前页 总页数
+      videoList: [],
       pageSize: 10,
+      pageSizes: [1,2,3,4],
+      currentPage: 1,
       total: 0,
-      cur: 1,
-      pages: 0
     }
   },
   mounted () {
-    this.strToJson(asiaYesStr)
+    this.strToJson(1)
   },
   methods: {
-    strToJson (asiaYesStr) {
-      let arr = getArray(asiaYesStr)
-      this.asiaList = arr
+    strToJson (no) {
+      let arr
+      if (no === 1) {
+        arr = getArray(asiaYesStr)
+      }else if (no === 2){
+        arr = getArray(asiaNoStr)
+      }else if (no === 3){
+        arr = getArray(usaStr)
+      }
+      this.videoList = arr
       this.total = arr.length
-      this.pages = Math.ceil(this.asiaList / this.pageSize)
-      console.log(this.asiaList)
     }
   }
 }

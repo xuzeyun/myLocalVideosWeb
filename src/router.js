@@ -16,11 +16,16 @@ export default new Router({
       name: 'home',
       component: Home
     },
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
+    {
+      path: '/aisayes',
+      name: 'aisayes',
+      component: Home
+    },
+    {
+      path: '/',
+      name: '',
+      component: Home
+    },
     {
       path: '/datatable',
       name: 'addVideo',
