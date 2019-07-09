@@ -1,4 +1,6 @@
-body{background:#191c28}
+body{background:#191c28; height: 100vh; overflow: auto}
+
 ::-webkit-scrollbar-thumb{ background-color:#15a4fa; height:50px; outline-offset:-2px; outline:0px solid #fff; border-radius:4px;}
 ::-webkit-scrollbar{ width:4px; height:4px;}
 ::-webkit-scrollbar-track-piece{background-color:#354052; border-radius:0;}
+

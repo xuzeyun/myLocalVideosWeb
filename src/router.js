@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import AddVideo from './views/dataList/AddVideo'
+import Table from './components/table.vue'
 
 Vue.use(Router)
 
@@ -12,8 +13,8 @@ export default new Router({
   linkExactActiveClass: 'router-link-exact-active',
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: '/videos/:nameId',
+      name: 'videos',
       component: Home
     },
     {
@@ -22,14 +23,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/',
-      name: '',
-      component: Home
-    },
-    {
       path: '/datatable',
       name: 'addVideo',
       component: AddVideo
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: Table
     }
     // {
     //   path: '/about',

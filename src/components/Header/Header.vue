@@ -60,6 +60,7 @@ export default {
     left 0
     right 0
     border-bottom #151721 1px solid
+    z-index 9
     .logo
       width 220px
       height 49px
