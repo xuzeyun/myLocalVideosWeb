@@ -13,6 +13,11 @@ export default new Router({
   linkExactActiveClass: 'router-link-exact-active',
   routes: [
     {
+      path: '/',
+      name: 'videos',
+      component: Home
+    },
+    {
       path: '/videos/:nameId',
       name: 'videos',
       component: Home

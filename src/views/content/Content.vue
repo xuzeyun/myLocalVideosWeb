@@ -6,7 +6,10 @@
     </sidebar>
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
-    <video-list :curStarInfo="curStarInfo"></video-list>
+    <video-list
+      :fileName="fileName"
+      :curStarInfo="curStarInfo">
+    </video-list>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ export default {
     return {
       asiaList: [],
       curStarInfo: {},
+      fileName: 'hd_asia_code'
     }
   },
   components: {

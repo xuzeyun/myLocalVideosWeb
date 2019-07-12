@@ -15,17 +15,13 @@
       <ul id="video_list" class="clearfix">
         <li v-for="(item, index) in curStarInfo.videos" :key="index">
           <div class="v-cover">
-            <!-- ./'+fileName+'/'+name+'/'+o+'/'+o+'.jpg -->
-            <img src="">
+            <img :src="getImgUrl(fileName, curStarInfo.name, item)">
           </div>
           <div class="v-info clearfix">
               <div class="tool">
-                <!-- ./'+fileName+'/'+name+'/'+o+'/'+o+'.jpg -->
-                <a class="show-img" data-img="" href="javascript:;">封面</a>
-                <!-- ./'+fileName+'/'+name+'/'+o+'/'+o+'.mp4 -->
-                <a class="show-video" data-video="" href="javascript:;">播放</a>
-                <!-- ./'+fileName+'/'+name+'/'+o+'/ -->
-                <a class="show-file" href="">文件夹</a>
+                <a class="show-img" href="javascript:;" @click="showCover(fileName, curStarInfo.name, item)">封面</a>
+                <a class="show-video" href="javascript:;" @click="playVideo(fileName, curStarInfo.name, item)">播放</a>
+                <a class="show-file" href="javascript:;" @click="openFile(fileName, curStarInfo.name, item)">文件</a>
               </div>
               <strong>{{ item }}</strong>
           </div>
@@ -40,7 +36,33 @@
 export default {
   name: 'VideoList',
   props: {
+    fileName: String,
     curStarInfo: Object
+  },
+  updated () {
+    console.log(this.curStarInfo)
+  },
+  computed: {
+    imgUrl (val) {
+      return ''+val
+    }
+  },
+  methods: {
+    getImgUrl (fileName, name, vId) {
+      return './' + fileName +'/'+ name + '/'+ vId + '/'+ vId +'.jpg';
+    },
+    showCover (fileName, name, vId) {
+      let url = './' + fileName +'/'+ name + '/'+ vId + '/'+ vId +'.jpg';
+      console.log(url)
+    },
+    playVideo (fileName, name, vId) {
+      let url = './' + fileName +'/'+ name + '/'+ vId + '/'+ vId +'.mp4';
+      console.log(url)
+    },
+    openFile (fileName, name, vId) {
+      let url = './' + fileName +'/'+ name + '/'+ vId + '/';
+      console.log(url)
+    }
   }
 }
 </script>
@@ -75,7 +97,7 @@ export default {
   .v-info{ line-height: 30px; height: 30px; color: #7490ab; padding: 0 5px;}
   .v-info strong{ font-size: 12px; color: #487098; font-weight: normal;}
   .v-info .tool{ float: right; }
-  .v-info .tool a{ display: inline-block; width: 30px; height: 30px; color: #7490ab; text-indent: -999em;}
+  .v-info .tool a{ display: inline-block; width: 30px; height: 30px; color: #7490ab;}
   .v-info .tool a:hover{color: #0094f7;}
   /* .v-info .tool .show-img{ background: url(../images/icon_02.png) no-repeat center; }
   .v-info .tool .show-video{background: url(../images/icon_01.png) no-repeat center;}
